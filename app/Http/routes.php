@@ -22,6 +22,7 @@ Route::group(['namespace'=>'Web'],function (){
     Route::get('art/{id}','IndexController@article')->name('article');
 });
 
+Route::get('mail/send','MailController@send');
 
 
 /*
@@ -31,6 +32,9 @@ Route::any('/admin/login','Admin\LoginController@login')->name('admin_login');
 Route::get('admin/code','Admin\LoginController@code')->name('admin_code');
 
 Route::group(['middleware'=>['web','admin.login'],'prefix'=>'admin','namespace'=>'Admin'],function (){
+//mail test
+    Route::get('mail/send','MailController@send');
+
     Route::get('/','IndexController@index')->name('admin_index');
     Route::get('info','IndexController@info')->name('admin_info');
     Route::any('change_password','IndexController@change_password')->name('admin_change_password');
